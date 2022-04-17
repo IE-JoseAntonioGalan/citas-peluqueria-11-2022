@@ -25,5 +25,3 @@ CREATE TABLE IF NOT EXISTS appointments (
   FOREIGN KEY(client_id) REFERENCES clients(id),
   FOREIGN KEY(service_id) REFERENCES services(id)
 );
-
-

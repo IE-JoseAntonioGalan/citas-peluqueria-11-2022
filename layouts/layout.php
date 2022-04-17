@@ -28,6 +28,7 @@
                     </li>
                 </ul>
             </div>
+            <a href="admin.php" class="btn btn-primary">Ver citas</a>
         </div>
     </nav>
     <div class="container mt-4">
