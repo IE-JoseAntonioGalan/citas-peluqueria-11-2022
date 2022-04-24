@@ -1,10 +1,10 @@
-<?php 
+<?php
 require_once './layouts/layout.php';
 require_once './config/Database.php';
 
 $conn = new Database();
 
-$services = $conn->sql_sentence('SELECT * FROM services'); 
+$services = $conn->sql_sentence('SELECT * FROM services');
 ?>
 
 <form action="controllers/appointment.controller.php" method="post" class="card w-75 m-auto">
@@ -20,19 +20,24 @@ $services = $conn->sql_sentence('SELECT * FROM services');
         </div>
         <div class="form-group col-md-6">
             <label for="phone" class="form-label">Numero de telefono*</label>
-            <input type="number" name="phone" id="phone" class="form-control">
+            <input type="tel" name="phone" id="phone" class="form-control">
         </div>
         <div class="form-group col-md-6">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" id="email" class="form-control">
         </div>
         <div class="form-group col-md-6">
-            <label for="service" class="form-label">Servicio*</label>
-            <select name="service" id="service" class="form-select">
-                <?php foreach($services->fetchAll() as $service) : ?>
-                    <option value="<?= $service['id'] ?>"><?= $service['service'] ?></option>
+            <label class="form-label">Servicios</label>
+            <div id="service" class="row ms-1">
+                <?php foreach ($services->fetchAll() as $service) : ?>
+                    <div class="form-check col-md-6">
+                        <input class="form-check-input" value="<?= $service['id'] ?>" name="services[]" type="checkbox" id="service-<?= $service['id'] ?>">
+                        <label class="form-check-label" for="service-<?= $service['id'] ?>">
+                            <?= $service['service'] ?>
+                        </label>
+                    </div>
                 <?php endforeach ?>
-            </select>
+            </div>
         </div>
         <div class="form-group col-md-6">
             <label for="date" class="form-label">Fecha de la cita*</label>
